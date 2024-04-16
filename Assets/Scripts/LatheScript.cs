@@ -8,6 +8,8 @@ public class LatheScript : MonoBehaviour
     // Start is called before the first frame update
     private bool isLatheEnabled = false;
     public GameObject cubePrefab;
+    public GameObject carriage;
+    public GameObject carriageValve;
     private Stack<GameObject> cubes = new Stack<GameObject>();
 
     public void onToggle()
@@ -18,9 +20,13 @@ public class LatheScript : MonoBehaviour
 
     }
 
+    public void MoveCarriage()
+    {
+        Debug.Log(carriageValve.transform.rotation);
+        carriage.transform.position = new Vector3(carriage.transform.position.x, carriageValve.transform.rotation.y, carriage.transform.position.z);
+    }
     private void CreateCube()
     {
-        Console.WriteLine("AAAA");
         Transform pos = cubePrefab.transform;
         GameObject newCube = Instantiate(cubePrefab, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
         cubes.Push(newCube);
@@ -32,12 +38,12 @@ public class LatheScript : MonoBehaviour
 
     void Start()
     {
-
+        Debug.Log("lathe");
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        // MoveCarriage();
     }
 }
